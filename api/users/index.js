@@ -1,8 +1,8 @@
 import express from "express";
 const router = express.Router();
 
-import GetUser from "./get-user.js";
+import GetUser from "./user-info.js";
 
-router.use("/get-user", GetUser);
+router.use("/user-info", GetUser);
 
 export default router;
