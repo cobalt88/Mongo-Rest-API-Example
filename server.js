@@ -1,6 +1,7 @@
 import { express } from "express";
-import { MongoClient } from "mongodb";
+import Mongoose from "mongoose";
 const url = process.env.MONGO_URI;
+const PORT = process.env.PORT || 3005;
 
 MongoClient.connect(url, (err, db) => {
   if (err) throw err;
@@ -14,6 +15,14 @@ MongoClient.connect(url, (err, db) => {
 
 const app = express();
 
-app.listen(3000, () => {
-  console.log("Example app listening on port 3000!");
+Mongoose.connect(
+  url,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log("Mongoose Is connected");
+  }
+);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
